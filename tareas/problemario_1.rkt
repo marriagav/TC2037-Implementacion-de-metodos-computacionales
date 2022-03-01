@@ -12,6 +12,7 @@ Pablo Rocha
 (provide roots)
 (provide bmi)
 (provide get-bmi)
+(provide factorial)
 
 ; 1
 (define (fahrenheit-to-celsius f)
@@ -48,3 +49,11 @@ Pablo Rocha
                 (if (>= (get-bmi weight height) 20)
                 'normal 'underweight)))))
 
+;5
+(define (factorial num)
+    "Returns factorial of a number"
+    (if (zero? num) 
+        1
+        (* num (factorial (- num 1)))
+    )
+)
