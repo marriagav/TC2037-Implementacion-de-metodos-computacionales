@@ -88,9 +88,21 @@ Pablo Rocha
 
 ;6
 
+;;; (define (duplicate inital-list) 
+;;;     "Duplicate all members in a list"
+;;;         (if (null? (cdr inital-list)) 
+;;;             inital-list 
+;;;             (duplicate (list (car )))
+;;;         )
+;;;     d-list)
+;;; (duplicate '(1 2))
 
 ;7
-
+(define (pow n p) 
+    (if (= p 0) 
+        1
+        (* (pow n (sub1 p)) n)))
+(pow -5 3)
 
 ;8
 (define (fibo-1 n)
@@ -110,3 +122,4 @@ Pablo Rocha
             (if (zero? n)
                 b
                 (loop (sub1 n) b (+ a b))))]))
+;9
