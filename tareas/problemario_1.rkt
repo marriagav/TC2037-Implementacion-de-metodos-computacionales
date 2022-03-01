@@ -1,5 +1,5 @@
 #| 
-Problemario: Programaci´on funcional, parte 1
+Problemario: Programación funcional, parte 1
 Miguel Arriaga
 Pablo Rocha
 2022-03-04
@@ -62,20 +62,22 @@ Pablo Rocha
     )
 )
 
-(define (fact-tail-helper num accum)
-    "Returns factorial with tail recursion"
-    (if (zero? num)
-        accum 
-        (fact-tail-helper (- num 1) (* num accum))
-    )
-)
 
 (define (fact-tail num)
     "Calls fact-tail-helper"
+    (define (fact-tail-helper num accum)
+        "Returns factorial with tail recursion"
+        (if (zero? num)
+            accum 
+            (fact-tail-helper (- num 1) (* num accum))
+        )
+    )
+    ;Debug
+    ;(trace fact-tail-helper)
     (fact-tail-helper num 1))
 
 ;Use only for debugging
 ;(trace factorial)
-;(trace fact-tail-helper)
+
 
 ;6
