@@ -13,6 +13,8 @@ Pablo Rocha
 (provide bmi)
 (provide get-bmi)
 (provide factorial)
+(provide fact-tail)
+(provide fact-tail-helper)
 
 ; 1
 (define (fahrenheit-to-celsius f)
@@ -57,3 +59,15 @@ Pablo Rocha
         (* num (factorial (- num 1)))
     )
 )
+
+(define (fact-tail-helper num accum)
+    "Returns factorial with tail recursion"
+    (if (zero? num)
+        accum 
+        (fact-tail-helper (- num 1) (* num accum))
+    )
+)
+
+(define (fact-tail num)
+    "Calls fact-tail-helper"
+    (fact-tail-helper num 1))
