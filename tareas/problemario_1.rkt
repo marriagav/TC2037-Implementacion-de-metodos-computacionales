@@ -119,3 +119,9 @@ Pablo Rocha
                 b
                 (loop (sub1 n) b (+ a b))))]))
 ;9
+;;; (define (enlist initial-list) (map () initial-list))
+
+;10
+
+(define (positives initial-list) (filter positive? initial-list))
+(positives '(12 -4 3 -1 -10 -13 6 -5))
