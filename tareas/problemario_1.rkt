@@ -62,7 +62,6 @@ Pablo Rocha
     )
 )
 
-
 (define (fact-tail num)
     "Calls fact-tail-helper"
     (define (fact-tail-helper num accum)
@@ -78,6 +77,5 @@ Pablo Rocha
 
 ;Use only for debugging
 ;(trace factorial)
-
 
 ;6
