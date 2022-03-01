@@ -14,6 +14,7 @@ Pablo Rocha
 (provide get-bmi)
 (provide factorial)
 (provide fact-tail)
+(provide !)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -61,6 +62,8 @@ Pablo Rocha
         (* num (factorial (- num 1)))
     )
 )
+;Use only for debugging
+;(trace factorial)
 
 (define (fact-tail num)
     "Calls fact-tail-helper"
@@ -75,7 +78,12 @@ Pablo Rocha
     ;(trace fact-tail-helper)
     (fact-tail-helper num 1))
 
-;Use only for debugging
-;(trace factorial)
+(define (! num)
+    "Final factorial function implementation, using let"
+    (let loop
+        ([n num] [a 1])
+        (if (zero? n) 
+            a
+            (loop (- n 1) (* n a)))))
 
 ;6
