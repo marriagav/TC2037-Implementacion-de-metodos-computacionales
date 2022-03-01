@@ -87,3 +87,26 @@ Pablo Rocha
             (loop (- n 1) (* n a)))))
 
 ;6
+
+
+;7
+
+
+;8
+(define (fibo-1 n)
+    "Returns n fibonacci number"
+    (cond
+        [(= n 0) 0]
+        [(= n 1) 1]
+        [else (+ (fibo-1 (- n 1)) (fibo-1 (- n 2)))]))
+
+(define (fibo-2 n)
+    "Tail recursion for fibonacci"
+    (cond 
+        [(= n 0) 0]
+        [(= n 1) 1]
+        [else (let loop
+            ([n (- n 1)] [a 0] [b 1])
+            (if (zero? n)
+                b
+                (loop (sub1 n) b (+ a b))))]))
