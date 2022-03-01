@@ -88,14 +88,10 @@ Pablo Rocha
 
 ;6
 
-;;; (define (duplicate inital-list) 
-;;;     "Duplicate all members in a list"
-;;;         (if (null? (cdr inital-list)) 
-;;;             inital-list 
-;;;             (duplicate (list (car )))
-;;;         )
-;;;     d-list)
-;;; (duplicate '(1 2))
+(define (duplicate inital-list) 
+    "Duplicate all members in a list"
+    (sort (append inital-list inital-list) <))
+(duplicate '(1 2))
 
 ;7
 (define (pow n p) 
