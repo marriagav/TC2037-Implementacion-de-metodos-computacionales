@@ -14,7 +14,9 @@ Pablo Rocha
 (provide get-bmi)
 (provide factorial)
 (provide fact-tail)
-(provide fact-tail-helper)
+
+; Library to debug function calls
+(require racket/trace)
 
 ; 1
 (define (fahrenheit-to-celsius f)
@@ -71,3 +73,9 @@ Pablo Rocha
 (define (fact-tail num)
     "Calls fact-tail-helper"
     (fact-tail-helper num 1))
+
+;Use only for debugging
+(trace fact)
+(trace fact-tail-helper)
+
+;6
