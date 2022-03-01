@@ -75,7 +75,7 @@ Pablo Rocha
     (fact-tail-helper num 1))
 
 ;Use only for debugging
-(trace fact)
-(trace fact-tail-helper)
+;(trace factorial)
+;(trace fact-tail-helper)
 
 ;6
