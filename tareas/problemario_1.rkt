@@ -123,7 +123,6 @@ Pablo Rocha
                 (loop (sub1 n) b (+ a b))))]))
 ;9
  (define (enlist initial-list)
-    ;;;  (map list(initial-list))
     (map (lambda (number)
         (list number))
        initial-list)
@@ -136,3 +135,9 @@ Pablo Rocha
     (filter positive? initial-list))
 
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
+
+;11 
+ (define (add-list initial-list)
+    (apply + initial-list)
+ )
+ (add-list '(1 2 3))
