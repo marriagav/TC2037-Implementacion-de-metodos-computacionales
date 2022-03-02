@@ -15,6 +15,12 @@ Pablo Rocha
 (provide factorial)
 (provide fact-tail)
 (provide !)
+(provide duplicate)
+(provide pow)
+(provide fibo-1)
+(provide fibo-2)
+(provide enlist)
+(provide positives)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -87,18 +93,15 @@ Pablo Rocha
             (loop (- n 1) (* n a)))))
 
 ;6
-
 (define (duplicate inital-list) 
     "Duplicate all members in a list"
     (sort (append inital-list inital-list) <))
-(duplicate '(1 2))
 
 ;7
 (define (pow n p) 
     (if (= p 0) 
         1
         (* (pow n (sub1 p)) n)))
-(pow -5 3)
 
 ;8
 (define (fibo-1 n)
@@ -119,9 +122,12 @@ Pablo Rocha
                 b
                 (loop (sub1 n) b (+ a b))))]))
 ;9
-;;; (define (enlist initial-list) (map () initial-list))
+; (define (enlist initial-list)
+;     (map list(initial-list))
+; )
 
 ;10
+(define (positives initial-list) 
+    (filter positive? initial-list))
 
-(define (positives initial-list) (filter positive? initial-list))
-(positives '(12 -4 3 -1 -10 -13 6 -5))
+;(positives '(12 -4 3 -1 -10 -13 6 -5))
