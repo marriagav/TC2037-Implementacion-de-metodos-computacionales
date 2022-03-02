@@ -122,9 +122,14 @@ Pablo Rocha
                 b
                 (loop (sub1 n) b (+ a b))))]))
 ;9
-; (define (enlist initial-list)
-;     (map list(initial-list))
-; )
+ (define (enlist initial-list)
+    ;;;  (map list(initial-list))
+    (map (lambda (number)
+        (list number))
+       initial-list)
+ )
+
+;(enlist (list 1 2 3))
 
 ;10
 (define (positives initial-list) 
