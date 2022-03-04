@@ -148,13 +148,17 @@ Pablo Rocha
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
 
 ;11 
-(define (add-list initial-list)
-    "Adds all the values within a list"
-    (if (null? (cdr initial-list)) 
-        (car initial-list)
-        (+ (car initial-list) (add-list (cdr initial-list))))
- )
-;(add-list '(1 8 3))
+(define (add-list lst) 
+    "Sum elements in a list"
+    (let loop 
+    ([lst lst] [result 0])
+    (if (empty? lst)
+        result
+        (loop (cdr lst) (+ (car lst) result))
+    )
+    )
+)
+(add-list '(1 8 3))
 
 ;12
 (define (invert-pairs initial-list) 
@@ -178,6 +182,14 @@ Pablo Rocha
 )
 
 ;(list-of-symbols '(a 2 c))
+
+;15
+;;; (define (swapper ch1 ch2 initial-list) 
+;;;     "Swapps values"
+;;;     (if (null? (cdr initial-list)) 
+;;;         (if ())
+;;;         (+ (car initial-list) (swapper (cdr initial-list))))
+;;; )
 
 ;16
 (define (average initial-list)
