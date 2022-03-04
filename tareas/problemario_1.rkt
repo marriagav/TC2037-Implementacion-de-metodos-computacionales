@@ -160,4 +160,16 @@ Pablo Rocha
     )
 )
 
-(invert-pairs '((1 2) (3 4) (5 6)))
+;(invert-pairs '((1 2) (3 4) (5 6)))
+
+;13
+; FALTA HACER QUE JALE SIN ELEMENTOS
+(define (list-of-symbols initial-list) 
+    "Check if all elements are symbols"
+    (if (null? (cdr initial-list)) 
+        (symbol? (car initial-list))
+        (and (symbol? (car initial-list)) (list-of-symbols (cdr initial-list)))
+    )
+)
+
+(list-of-symbols '(a 2 c))
