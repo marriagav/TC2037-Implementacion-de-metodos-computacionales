@@ -6,6 +6,7 @@ Pablo Rocha
 |#
 
 #lang racket
+(require racket/trace)
 
 (provide fahrenheit-to-celsius)
 (provide sign)
@@ -24,6 +25,7 @@ Pablo Rocha
 (provide add-list)
 (provide invert-pairs)
 (provide list-of-symbols?)
+(provide average)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -179,10 +181,11 @@ Pablo Rocha
 
 ;16
 (define (average initial-list)
-    (if (null? (cdr initial-list)) 
-        (car initial-list)
-        (/ (+ (car initial-list) (average (cdr initial-list))) (length initial-list)))
+    "Get average of list"
+    (if (empty? initial-list) 0 
+    (/ (add-list initial-list) (length initial-list))
+    ) 
  )
+ ;;; (average '())
 
-(length '(1 2 3))
-(average '(1 1 1))
+
