@@ -180,7 +180,7 @@ Pablo Rocha
 
 ;16
 (define (average initial-list)
-    "Get average of list"
+    "Get average of list values"
     (if (empty? initial-list) 0 
     (/ (add-list initial-list) (length initial-list))
     ) 
