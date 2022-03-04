@@ -158,7 +158,7 @@ Pablo Rocha
     )
     )
 )
-(add-list '(1 8 3))
+;(add-list '(1 8 3))
 
 ;12
 (define (invert-pairs initial-list) 
@@ -197,6 +197,6 @@ Pablo Rocha
     (/ (add-list initial-list) (length initial-list))
     ) 
  )
- ;;; (average '())
+; (average '())
 
 
