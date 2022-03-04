@@ -174,7 +174,6 @@ Pablo Rocha
         (and (symbol? (car initial-list)) (list-of-symbols? (cdr initial-list)))
     ))
 )
-
 ;(list-of-symbols '(a 2 c))
 
 ;16
