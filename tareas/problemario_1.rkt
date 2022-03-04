@@ -100,7 +100,6 @@ Pablo Rocha
         (append (list (car initial-list) (car initial-list)) (duplicate (cdr initial-list)))
     )
 )
-
 ;(duplicate '(1 8 3 7))
 
 ;7
@@ -110,7 +109,7 @@ Pablo Rocha
         (* (pow n (sub1 p)) n)))
 
 ;8
-(define (fibo-1 n)
+(define (fib n)
     "Returns n fibonacci number"
     (cond
         [(= n 0) 0]
@@ -133,13 +132,11 @@ Pablo Rocha
         (list number))
        initial-list)
  )
-
 ;(enlist (list 1 2 3))
 
 ;10
 (define (positives initial-list) 
     (filter positive? initial-list))
-
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
 
 ;11 
@@ -159,17 +156,15 @@ Pablo Rocha
         (append (list (list (car (cdr (car initial-list))) (car (car initial-list)))) (invert-pairs (cdr initial-list)))
     )
 )
-
 ;(invert-pairs '((1 2) (3 4) (5 6)))
 
 ;13
 ; FALTA HACER QUE JALE SIN ELEMENTOS
-(define (list-of-symbols initial-list) 
+(define (list-of-symbols? initial-list) 
     "Check if all elements are symbols"
     (if (null? (cdr initial-list)) 
         (symbol? (car initial-list))
         (and (symbol? (car initial-list)) (list-of-symbols (cdr initial-list)))
     )
 )
-
-(list-of-symbols '(a 2 c))
+;(list-of-symbols? '(a 2 c))
