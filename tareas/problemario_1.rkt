@@ -173,3 +173,13 @@ Pablo Rocha
 )
 
 (list-of-symbols '(a 2 c))
+
+;16
+(define (average initial-list)
+    (if (null? (cdr initial-list)) 
+        (car initial-list)
+        (/ (+ (car initial-list) (average (cdr initial-list))) (length initial-list)))
+ )
+
+(length '(1 2 3))
+(average '(1 1 1))
