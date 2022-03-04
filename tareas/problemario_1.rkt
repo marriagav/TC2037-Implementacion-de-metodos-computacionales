@@ -183,12 +183,24 @@ Pablo Rocha
 ;(list-of-symbols '(a 2 c))
 
 ;15
-;;; (define (swapper ch1 ch2 initial-list) 
-;;;     "Swapps values"
-;;;     (if (null? (cdr initial-list)) 
-;;;         (if ())
-;;;         (+ (car initial-list) (swapper (cdr initial-list))))
-;;; )
+(define (change ch1 ch2 elem) 
+    (if (= ch1 elem) 
+        ch2 
+        (if (= ch2 elem) 
+            ch1 
+            elem)
+    )
+)
+
+(define (swapper ch1 ch2 initial-list) 
+    "Swapps values"
+    (if (null? (cdr initial-list)) 
+        (change ch1 ch2 (car initial-list))
+        ;;; (append (change ch1 ch2 (car initial-list)) (swapper ch1 ch2 (cdr initial-list))))
+        (cons (change ch1 ch2 (car initial-list)) (swapper ch1 ch2 (cdr initial-list))))
+)
+
+(swapper 1 3 '(1 8 4 3))
 
 ;16
 (define (average initial-list)
