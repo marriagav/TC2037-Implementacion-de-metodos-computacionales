@@ -21,6 +21,9 @@ Pablo Rocha
 (provide fibo-2)
 (provide enlist)
 (provide positives)
+(provide add-list)
+(provide invert-pairs)
+(provide list-of-symbols?)
 
 ; Library to debug function calls
 (require racket/trace)
