@@ -93,14 +93,6 @@ Pablo Rocha
             (loop (- n 1) (* n a)))))
 
 ;6
-;;; (define (duplicate initial-list) 
-;;;     "Duplicate all members in a list"
-;;;     (if (null? (cdr initial-list)) 
-;;;         (append (car initial-list) (car initial-list))
-;;;         (append (car initial-list) (car initial-list) (duplicate (cdr initial-list)))
-;;;     )
-;;; )
-
 (define (duplicate initial-list) 
     "Duplicate all members in a list"
     (if (null? (cdr initial-list)) 
@@ -109,7 +101,7 @@ Pablo Rocha
     )
 )
 
-(duplicate '(1 8 3 7))
+;(duplicate '(1 8 3 7))
 
 ;7
 (define (pow n p) 
@@ -158,3 +150,14 @@ Pablo Rocha
  )
 
 ;(add-list '(1 8 3))
+
+;12
+(define (invert-pairs initial-list) 
+    "Reverse pairs"
+    (if (null? (cdr initial-list)) 
+        (list(list (car (cdr (car initial-list))) (car (car initial-list))))
+        (append (list (list (car (cdr (car initial-list))) (car (car initial-list)))) (invert-pairs (cdr initial-list)))
+    )
+)
+
+(invert-pairs '((1 2) (3 4) (5 6)))
