@@ -93,9 +93,23 @@ Pablo Rocha
             (loop (- n 1) (* n a)))))
 
 ;6
-(define (duplicate inital-list) 
+;;; (define (duplicate initial-list) 
+;;;     "Duplicate all members in a list"
+;;;     (if (null? (cdr initial-list)) 
+;;;         (append (car initial-list) (car initial-list))
+;;;         (append (car initial-list) (car initial-list) (duplicate (cdr initial-list)))
+;;;     )
+;;; )
+
+(define (duplicate initial-list) 
     "Duplicate all members in a list"
-    (sort (append inital-list inital-list) <))
+    (if (null? (cdr initial-list)) 
+        (list (car initial-list) (car initial-list))
+        (append (list (car initial-list) (car initial-list)) (duplicate (cdr initial-list)))
+    )
+)
+
+(duplicate '(1 8 3 7))
 
 ;7
 (define (pow n p) 
@@ -143,5 +157,4 @@ Pablo Rocha
         (+ (car initial-list) (add-list (cdr initial-list))))
  )
 
-
-(add-list '(1 8 3))
+;(add-list '(1 8 3))
