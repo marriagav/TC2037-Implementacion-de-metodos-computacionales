@@ -182,7 +182,7 @@ Pablo Rocha
 )
 ;(list-of-symbols '(a 2 c))
 
-;15
+;14
 (define (change ch1 ch2 elem) 
     (if (= ch1 elem) 
         ch2 
@@ -201,6 +201,9 @@ Pablo Rocha
 )
 
 (swapper 1 3 '(1 8 4 3))
+
+;15
+
 
 ;16
 (define (average initial-list)
