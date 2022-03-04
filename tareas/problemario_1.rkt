@@ -148,7 +148,6 @@ Pablo Rocha
         (car initial-list)
         (+ (car initial-list) (add-list (cdr initial-list))))
  )
-
 ;(add-list '(1 8 3))
 
 ;12
@@ -162,12 +161,13 @@ Pablo Rocha
 ;(invert-pairs '((1 2) (3 4) (5 6)))
 
 ;13
-; FALTA HACER QUE JALE SIN ELEMENTOS
 (define (list-of-symbols? initial-list) 
     "Check if all elements are symbols"
+    (if (zero? (length initial-list))
+        #t
     (if (null? (cdr initial-list)) 
         (symbol? (car initial-list))
         (and (symbol? (car initial-list)) (list-of-symbols? (cdr initial-list)))
-    )
+    ))
 )
 ;(list-of-symbols? '(a 2 c))
