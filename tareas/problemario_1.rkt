@@ -200,3 +200,10 @@ Pablo Rocha
 ; (average '())
 
 
+;17 
+; (define (standard-deviation-helper lst)
+;     (let loop
+;         ([lst lst] [result 0])
+;         (if (empty? lst)
+;             result 
+;             (loop (cdr lst) (+ (car lst) result)))))
