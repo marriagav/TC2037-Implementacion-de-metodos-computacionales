@@ -107,6 +107,7 @@ Pablo Rocha
 
 ;7
 (define (pow n p) 
+    "Returns power p of number n"
     (if (= p 0) 
         1
         (* (pow n (sub1 p)) n)))
@@ -130,7 +131,8 @@ Pablo Rocha
                 b
                 (loop (sub1 n) b (+ a b))))]))
 ;9
- (define (enlist initial-list)
+(define (enlist initial-list)
+    "Returns a list of lists of the elements in the initial list"
     (map (lambda (number)
         (list number))
        initial-list)
@@ -139,11 +141,13 @@ Pablo Rocha
 
 ;10
 (define (positives initial-list) 
+    "Returns a sub-list of the original containing only positives"
     (filter positive? initial-list))
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
 
 ;11 
-  (define (add-list initial-list)
+(define (add-list initial-list)
+    "Adds all the values within a list"
     (if (null? (cdr initial-list)) 
         (car initial-list)
         (+ (car initial-list) (add-list (cdr initial-list))))
@@ -152,7 +156,7 @@ Pablo Rocha
 
 ;12
 (define (invert-pairs initial-list) 
-    "Reverse pairs"
+    "Reverse list pairs"
     (if (null? (cdr initial-list)) 
         (list(list (car (cdr (car initial-list))) (car (car initial-list))))
         (append (list (list (car (cdr (car initial-list))) (car (car initial-list)))) (invert-pairs (cdr initial-list)))
@@ -162,7 +166,7 @@ Pablo Rocha
 
 ;13
 (define (list-of-symbols? initial-list) 
-    "Check if all elements are symbols"
+    "Check if all elements in a list are symbols"
     (if (zero? (length initial-list))
         #t
     (if (null? (cdr initial-list)) 
