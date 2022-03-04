@@ -17,10 +17,13 @@ Pablo Rocha
 (provide !)
 (provide duplicate)
 (provide pow)
-(provide fibo-1)
+(provide fib)
 (provide fibo-2)
 (provide enlist)
 (provide positives)
+(provide add-list)
+(provide invert-pairs)
+(provide list-of-symbols?)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -100,22 +103,22 @@ Pablo Rocha
         (append (list (car initial-list) (car initial-list)) (duplicate (cdr initial-list)))
     )
 )
-
 ;(duplicate '(1 8 3 7))
 
 ;7
 (define (pow n p) 
+    "Returns power p of number n"
     (if (= p 0) 
         1
         (* (pow n (sub1 p)) n)))
 
 ;8
-(define (fibo-1 n)
+(define (fib n)
     "Returns n fibonacci number"
     (cond
         [(= n 0) 0]
         [(= n 1) 1]
-        [else (+ (fibo-1 (- n 1)) (fibo-1 (- n 2)))]))
+        [else (+ (fib (- n 1)) (fib (- n 2)))]))
 
 (define (fibo-2 n)
     "Tail recursion for fibonacci"
@@ -128,51 +131,51 @@ Pablo Rocha
                 b
                 (loop (sub1 n) b (+ a b))))]))
 ;9
- (define (enlist initial-list)
+(define (enlist initial-list)
+    "Returns a list of lists of the elements in the initial list"
     (map (lambda (number)
         (list number))
        initial-list)
  )
-
 ;(enlist (list 1 2 3))
 
 ;10
 (define (positives initial-list) 
+    "Returns a sub-list of the original containing only positives"
     (filter positive? initial-list))
-
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
 
 ;11 
-  (define (add-list initial-list)
+(define (add-list initial-list)
+    "Adds all the values within a list"
     (if (null? (cdr initial-list)) 
         (car initial-list)
         (+ (car initial-list) (add-list (cdr initial-list))))
  )
-
 ;(add-list '(1 8 3))
 
 ;12
 (define (invert-pairs initial-list) 
-    "Reverse pairs"
+    "Reverse list pairs"
     (if (null? (cdr initial-list)) 
         (list(list (car (cdr (car initial-list))) (car (car initial-list))))
         (append (list (list (car (cdr (car initial-list))) (car (car initial-list)))) (invert-pairs (cdr initial-list)))
     )
 )
-
 ;(invert-pairs '((1 2) (3 4) (5 6)))
 
 ;13
-; FALTA HACER QUE JALE SIN ELEMENTOS
-(define (list-of-symbols initial-list) 
-    "Check if all elements are symbols"
+(define (list-of-symbols? initial-list) 
+    "Check if all elements in a list are symbols"
+    (if (zero? (length initial-list))
+        #t
     (if (null? (cdr initial-list)) 
         (symbol? (car initial-list))
-        (and (symbol? (car initial-list)) (list-of-symbols (cdr initial-list)))
-    )
+        (and (symbol? (car initial-list)) (list-of-symbols? (cdr initial-list)))
+    ))
 )
 
-(list-of-symbols '(a 2 c))
+;(list-of-symbols '(a 2 c))
 
 ;16
 (define (average initial-list)
