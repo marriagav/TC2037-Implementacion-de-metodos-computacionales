@@ -17,7 +17,7 @@ Pablo Rocha
 (provide !)
 (provide duplicate)
 (provide pow)
-(provide fibo-1)
+(provide fib)
 (provide fibo-2)
 (provide enlist)
 (provide positives)
@@ -114,7 +114,7 @@ Pablo Rocha
     (cond
         [(= n 0) 0]
         [(= n 1) 1]
-        [else (+ (fibo-1 (- n 1)) (fibo-1 (- n 2)))]))
+        [else (+ (fib (- n 1)) (fib (- n 2)))]))
 
 (define (fibo-2 n)
     "Tail recursion for fibonacci"
@@ -164,7 +164,7 @@ Pablo Rocha
     "Check if all elements are symbols"
     (if (null? (cdr initial-list)) 
         (symbol? (car initial-list))
-        (and (symbol? (car initial-list)) (list-of-symbols (cdr initial-list)))
+        (and (symbol? (car initial-list)) (list-of-symbols? (cdr initial-list)))
     )
 )
 ;(list-of-symbols? '(a 2 c))
