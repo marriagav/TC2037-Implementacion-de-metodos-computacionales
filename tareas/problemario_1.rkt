@@ -137,7 +137,11 @@ Pablo Rocha
 ;(positives '(12 -4 3 -1 -10 -13 6 -5))
 
 ;11 
- (define (add-list initial-list)
-    (apply + initial-list)
+  (define (add-list initial-list)
+    (if (null? (cdr initial-list)) 
+        (car initial-list)
+        (+ (car initial-list) (add-list (cdr initial-list))))
  )
- (add-list '(1 2 3))
+
+
+(add-list '(1 8 3))
