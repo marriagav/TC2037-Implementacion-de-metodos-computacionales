@@ -104,10 +104,12 @@ Pablo Rocha
 ;6
 (define (duplicate initial-list) 
     "Duplicate all members in a list"
+    (if (empty? initial-list) 
+        '()
     (if (null? (cdr initial-list)) 
         (list (car initial-list) (car initial-list))
         (append (list (car initial-list) (car initial-list)) (duplicate (cdr initial-list)))
-    )
+    ))
 )
 ;(duplicate '(1 8 3 7))
 
@@ -167,10 +169,12 @@ Pablo Rocha
 ;12
 (define (invert-pairs initial-list) 
     "Reverse list pairs"
+    (if (empty? initial-list) 
+        '()
     (if (null? (cdr initial-list)) 
         (list(list (car (cdr (car initial-list))) (car (car initial-list))))
         (append (list (list (car (cdr (car initial-list))) (car (car initial-list)))) (invert-pairs (cdr initial-list)))
-    )
+    ))
 )
 ;(invert-pairs '((1 2) (3 4) (5 6)))
 
@@ -221,7 +225,9 @@ Pablo Rocha
 
 (define (standard-deviation lst)
     "Calculates standard deviation of a list"
-    (sqrt (/ (add-list (standard-deviation-helper lst)) (len lst)))) 
+    (if (empty? lst) 
+        0
+    (sqrt (/ (add-list (standard-deviation-helper lst)) (len lst)))))
 
 ;20
 (define (binary n)
