@@ -29,6 +29,7 @@ Pablo Rocha
 (provide standard-deviation-helper)
 (provide standard-deviation)
 (provide len)
+(provide binary)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -221,3 +222,14 @@ Pablo Rocha
 (define (standard-deviation lst)
     "Calculates standard deviation of a list"
     (sqrt (/ (add-list (standard-deviation-helper lst)) (len lst)))) 
+
+;20
+(define (binary n)
+    "Converts an integer to its binary representation"
+    (if (zero? n) 
+        '()
+        (let loop
+        ([num n] [result '()])
+        (if (zero? num)
+            result
+            (loop (quotient num 2) (cons (remainder num 2) result))))))
