@@ -26,6 +26,9 @@ Pablo Rocha
 (provide invert-pairs)
 (provide list-of-symbols?)
 (provide average)
+(provide standard-deviation-helper)
+(provide standard-deviation)
+(provide len)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -182,7 +185,7 @@ Pablo Rocha
 )
 ;(list-of-symbols '(a 2 c))
 
-;15
+;14
 ;;; (define (swapper ch1 ch2 initial-list) 
 ;;;     "Swapps values"
 ;;;     (if (null? (cdr initial-list)) 
@@ -201,9 +204,20 @@ Pablo Rocha
 
 
 ;17 
-; (define (standard-deviation-helper lst)
-;     (let loop
-;         ([lst lst] [result 0])
-;         (if (empty? lst)
-;             result 
-;             (loop (cdr lst) (+ (car lst) result)))))
+(define (standard-deviation-helper list1)
+    "Obtains a new lista from the original to make standard deviation easier to calculate"
+    (let loop
+        ([lst list1] [result '()])
+        (if (empty? lst)
+            (reverse result)
+            (loop (cdr lst) (cons (pow (- (car lst) (average list1)) 2) result)))))
+
+(define (len lst)
+    "Return the length of a list"
+    (if (empty? lst)
+    0
+    (+ 1 (len (cdr lst)))))
+
+(define (standard-deviation lst)
+    "Calculates standard deviation of a list"
+    (sqrt (/ (add-list (standard-deviation-helper lst)) (len lst)))) 
