@@ -198,6 +198,24 @@ Pablo Rocha
 ;;;         (+ (car initial-list) (swapper (cdr initial-list))))
 ;;; )
 
+;15
+(define (mul-helper list1 list2) 
+    "Resturns a list on mul elementes"
+    (let loop 
+    ([lst list1] [lst2 list2] [result '()])
+    (if (empty? lst)
+        (reverse result)
+        (loop (cdr lst) (cdr lst2) (cons (* (car lst) (car lst2)) result))
+    )
+    )
+)
+
+(mul-helper '(1 2 3) '(1 2 3))
+    "Returns the dot product of a list"
+    (define (dot-product list1 list2) 
+        (add-list (mul-helper list1 list2))
+)
+;(dot-product '(1 2 3) '(4 5 6))
 ;16
 (define (average initial-list)
     "Get average of list values"
