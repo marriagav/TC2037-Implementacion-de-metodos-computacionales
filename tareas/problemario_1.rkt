@@ -30,6 +30,7 @@ Pablo Rocha
 (provide standard-deviation)
 (provide len)
 (provide binary)
+(provide dot-product)
 
 ; Library to debug function calls
 (require racket/trace)
@@ -209,13 +210,14 @@ Pablo Rocha
     )
     )
 )
-
-(mul-helper '(1 2 3) '(1 2 3))
-    "Returns the dot product of a list"
-    (define (dot-product list1 list2) 
+;(mul-helper '(1 2 3) '(1 2 3))
+    
+(define (dot-product list1 list2)
+    "Returns the dot product of a list" 
         (add-list (mul-helper list1 list2))
 )
 ;(dot-product '(1 2 3) '(4 5 6))
+
 ;16
 (define (average initial-list)
     "Get average of list values"
