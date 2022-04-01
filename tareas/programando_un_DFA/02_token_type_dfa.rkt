@@ -5,7 +5,7 @@
     Miguel Arriaga
 
     Examples:
-    (automaton-1 (dfa-str 'start '(int var) delta-arithmetic-1) "34+9")
+    (automaton-2 (dfa-str 'start '(int var) delta-arithmetic-1) "34+9")
 |#
 
 #lang racket
