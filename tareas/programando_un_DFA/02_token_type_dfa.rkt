@@ -24,7 +24,7 @@
 (define (automaton-2 dfa input-string)
     "Evaluate a string to validate or not according to a DFA.
     Return a list of tokens found"
-    (trace-let loop 
+    (let loop 
         (
             [state (dfa-str-initial-state dfa)]    ;Current state
             ; [currTokenValue null]
