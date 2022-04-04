@@ -139,7 +139,6 @@
                     [(or (char-alphabetic? character) (eq? character #\_)) (values 'op 'var)]
                     [(space? character) (values 'op 'o_sp)]
                     [(par_open? character) (values 'op 'par_open)]
-                    [(par_close? character) (values 'op 'par_close)]
                     [else (values #f 'fail)])]
         ['div (cond
                     [(char-numeric? character) (values 'op 'int)]
@@ -148,7 +147,6 @@
                     [(space? character) (values 'op 'o_sp)]
                     [(division? character) (values #f 'comment)]
                     [(par_open? character) (values 'op 'par_open)]
-                    [(par_close? character) (values 'op 'par_close)]
                     [else (values #f 'fail)])]
         ['par_open (cond
                     [(char-numeric? character) (values 'par_open 'int)]
