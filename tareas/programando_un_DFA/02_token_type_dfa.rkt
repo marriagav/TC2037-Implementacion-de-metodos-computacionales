@@ -3,7 +3,7 @@
     Identify and return all token types in the input string
 
     Miguel Arriaga
-
+    Pablo Rocha
     Examples:
     (arithmetic-lexer "a = 32.4 *-8.6 - b/      6.1E-8")
     (arithmetic-lexer "d = a ^ b+5 // Esto es un comentario")
@@ -28,16 +28,18 @@
     (let loop 
         (
             [state (dfa-str-initial-state dfa)]    ;Current state
-            ; [currTokenValue null]
             [chars (string->list input-string)]    ;List of characters
-            [result null]                          ;List of tokens found
+            [result null]                           ;List of tokens found
+            [charValue null]                        ;List of chars found               
+            [currCharValue null]                    ;current Chars
+            [finalList null]
         )                         
         (if (empty? chars)
             ; Check that the final state is in he accept states list
             (if (member state (dfa-str-accept-states dfa))
-                (reverse (cons state result))
+                (reverse (cons (cons (list->string (reverse currCharValue)) (list state)) finalList))
                 (if (member state (dfa-str-spaces dfa))
-                    (reverse result)
+                    (reverse finalList)
                     #f
                 )
             )
@@ -49,7 +51,21 @@
                     ; Call again with the rest of the characters
                     (cdr chars)
                     ; Update the list of tokens found
-                    (if token (cons token result) result)
+                    (if token 
+                        (cons token result) 
+                        result)
+                    ;List
+                    (if token 
+                        (cons (list->string (reverse currCharValue)) charValue) 
+                        charValue)
+                    ;Curr value
+                    (if token 
+                        (if (space? (car chars)) null (list (car chars)) )
+                        (if (and (space? (car chars)) (not (equal? state 'comment))) currCharValue (cons (car chars) currCharValue) ))
+                    ;Final List
+                    (if token 
+                        (cons (cons (list->string (reverse currCharValue)) (list token)) finalList) 
+                        finalList)
                 )
             )
         )
