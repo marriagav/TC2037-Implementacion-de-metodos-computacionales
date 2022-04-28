@@ -11,12 +11,13 @@ defmodule Homework do
   def insert(n,list),do: do_insert(n,[],list)
   defp do_insert(n,[],[]),do: [n]
   defp do_insert(n,before,[head | tail]) do
-    if tail == [] do
-      Enum.reverse([n|[head|before]])
-    else
+
       if n <= head  do
         Enum.reverse(do_join([head | tail],[n|before]))
       else
+        if tail == [] do
+          Enum.reverse([n|[head|before]])
+        else
         do_insert(n,[head | before],tail)
       end
     end
@@ -25,9 +26,17 @@ defmodule Homework do
   def insertion_sort(list), do: do_insertion_sort([],list)
   defp do_insertion_sort(sorted,[]),do: sorted
   defp do_insertion_sort(sorted,[head | tail]),do: do_insertion_sort(insert(head,sorted),tail)
+
+  def rotate_left(n,list), do: do_rotate_left(n,list)
+  defp do_rotate_left(0,list),do: list
+  defp do_rotate_left(n,[head|tail]) do
+    #!Poner codigo para rotar
+    do_rotate_left(n-1,list)
+  end
 end
 
-# IO.inspect Homework.insert(4,[])
-# IO.inspect Homework.insert(4,[1,2,5])
-# IO.inspect Homework.insert(6,[3,4])
+IO.inspect Homework.insert(4,[])
+IO.inspect Homework.insert(4,[1,2,5])
+IO.inspect Homework.insert(6,[3,4])
 IO.inspect Homework.insertion_sort([4,3,6,8,3,0,9,1,7])
+IO.inspect Homework.insertion_sort([5,5,5,1,5,5,5])
