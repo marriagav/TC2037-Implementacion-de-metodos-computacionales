@@ -1,5 +1,9 @@
 
-# Intro: Pablo Rocha y Miguel Arriaga
+# Problemario: Programación funcional, parte 1
+# Miguel Arriaga
+# Pablo Rocha
+# 2022-29-04
+
 
 defmodule Homework do
   # Exp: function to merge list quickly
