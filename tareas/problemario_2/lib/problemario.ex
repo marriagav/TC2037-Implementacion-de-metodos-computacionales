@@ -46,7 +46,7 @@ defmodule Hw.Ariel2 do
   """
   def rotate_left(n,list), do: do_rotate_left(n,list)
   defp do_rotate_left(0,list),do: list
-  defp do_rotate_left(n,[]),do: []
+  defp do_rotate_left(_n,[]),do: []
   defp do_rotate_left(n,[head|tail])when n > 0, do: do_rotate_left(n-1,tail++[head])
   defp do_rotate_left(n,list)when n < 0, do: do_rotate_left(n+1,List.delete_at([List.last(list)|list], length([List.last(list)|list])-1))
 
