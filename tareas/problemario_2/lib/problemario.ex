@@ -19,8 +19,7 @@ defmodule Hw.Ariel2 do
   @doc"""
   #1 insert: Unir un elemento en el lugar adecuado
   """
-  #! Marca errores en los tests
-  def insert(n,list),do: do_insert(n,[],list)
+  def insert(list, n),do: do_insert(n,[],list)
   defp do_insert(n,[],[]),do: [n]
   defp do_insert(n,before,[head | tail]) do
       if n <= head  do
@@ -39,7 +38,7 @@ defmodule Hw.Ariel2 do
   """
   def insertion_sort(list), do: do_insertion_sort([],list)
   defp do_insertion_sort(sorted,[]),do: sorted
-  defp do_insertion_sort(sorted,[head | tail]),do: do_insertion_sort(insert(head,sorted),tail)
+  defp do_insertion_sort(sorted,[head | tail]),do: do_insertion_sort(insert(sorted, head),tail)
 
   @doc"""
   #3 Rotate left
@@ -115,7 +114,7 @@ defmodule Hw.Ariel2 do
 end
 
 # ! Testing
-# IO.inspect Hw.Ariel2.insert(4,[])
+IO.inspect Hw.Ariel2.insert([],[14])
 # IO.inspect Hw.Ariel2.insert(4,[1,2,5])
 # IO.inspect Hw.Ariel2.insert(6,[3,4])
 # IO.inspect Hw.Ariel2.insertion_sort([4,3,6,8,3,0,9,1,7])
