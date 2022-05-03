@@ -50,6 +50,44 @@ defmodule Hw.Ariel2 do
   defp do_rotate_left(n,[head|tail])when n > 0, do: do_rotate_left(n-1,tail++[head])
   defp do_rotate_left(n,list)when n < 0, do: do_rotate_left(n+1,List.delete_at([List.last(list)|list], length([List.last(list)|list])-1))
 
+  @doc"""
+  #8 Group contiguous equal elements in a list as sublists
+  """
+  def pack(list), do: do_pack(list, [], [])
+  defp do_pack([], _temp, result), do: Enum.reverse(result)
+  # The list only has one element
+  defp do_pack([head | []], temp, result),
+    do: do_pack([], [], [[head | temp] | result])
+  # The first two elements are equal
+  defp do_pack([head, head | tail], temp, result),
+    do: do_pack([head | tail], [head | temp], result)
+  # The first two elements are different
+  defp do_pack([head | tail], temp, result),
+    do: do_pack(tail, [], [[head | temp] | result])
+
+  @doc"""
+  #10 Encode
+  """
+  def encode(list), do: do_encode(list)
+  defp do_encode(list) do
+    list2=pack(list)
+    do_encode(list2,[])
+  end
+  defp do_encode([], result), do: Enum.reverse(result)
+  defp do_encode([head | tail], result) do
+    head_encoded=single_encode(head)
+    do_encode(tail,[head_encoded | result])
+  end
+
+  @doc"""
+  Single encode to use as helper function
+  """
+  def single_encode(list), do: do_single_encode(list, 0)
+  defp do_single_encode([head], result), do: [result+1, head]
+  defp do_single_encode([_head | tail], result),
+    do: do_single_encode(tail, result+1)
+
+
   # @doc"""
   # #4 Prime Helper
   # """
@@ -74,21 +112,6 @@ defmodule Hw.Ariel2 do
   #   do_prime_factors(left/min,[min|list])
   # end
 
-  # @doc"""
-  # #8 Group contiguous equal elements in a list as sublists
-  # """
-  # def pack(list), do: do_pack(list, [], [])
-  # defp do_pack([], _temp, result), do: Enum.reverse(result)
-  # # The list only has one element
-  # defp do_pack([head | []], temp, result),
-  #   do: do_pack([], [], [[head | temp] | result])
-  # # The first two elements are equal
-  # defp do_pack([head, head | tail], temp, result),
-  #   do: do_pack([head | tail], [head | temp], result)
-  # # The first two elements are different
-  # defp do_pack([head | tail], temp, result),
-  #   do: do_pack(tail, [], [[head | temp] | result])
-
 end
 
 # ! Testing
@@ -99,4 +122,4 @@ end
 # IO.inspect Hw.Ariel2.insertion_sort([5,5,5,1,5,5,5])
 # IO.inspect Hw.Ariel2.rotate_left(3,[4,3,6,8,3,0,9,1,7])
 # IO.inspect Hw.Ariel2.rotate_left(-1,[4,3,6,8,3,0,9,1,7])
-# IO.inspect Hw.Ariel2.prime_factors(12)
+IO.inspect Hw.Ariel2.encode([1,1,1,2,2,3,3,4,4,4])
