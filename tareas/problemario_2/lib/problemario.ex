@@ -49,44 +49,44 @@ defmodule Hw.Ariel2 do
   defp do_rotate_left(n,[head|tail])when n > 0, do: do_rotate_left(n-1,tail++[head])
   defp do_rotate_left(n,list)when n < 0, do: do_rotate_left(n+1,List.delete_at([List.last(list)|list], length([List.last(list)|list])-1))
 
-  @doc"""
-  #4 Prime Helper
-  """
-  def prime_helper(n), do: do_prime_helper(2,n)
-  defp do_prime_helper(p,n) do
-    p_rounded=Kernel.trunc(p)
-    if rem(n, p_rounded) == 0 do
-      p
-    else
-      do_prime_helper(p_rounded+1,n)
-    end
-  end
+  # @doc"""
+  # #4 Prime Helper
+  # """
+  # def prime_helper(n), do: do_prime_helper(2,n)
+  # defp do_prime_helper(p,n) do
+  #   p_rounded=Kernel.trunc(p)
+  #   if rem(n, p_rounded) == 0 do
+  #     p
+  #   else
+  #     do_prime_helper(p_rounded+1,n)
+  #   end
+  # end
 
 
-  @doc"""
-  #4 Prime Factors
-  """
-  def prime_factors(n), do: do_prime_factors(n,[])
-  defp do_prime_factors(left,res) when left < 2,do: Enum.reverse(res)
-  defp do_prime_factors(left,list) when left >= 2 do
-    min = prime_helper(left)
-    do_prime_factors(left/min,[min|list])
-  end
+  # @doc"""
+  # #4 Prime Factors
+  # """
+  # def prime_factors(n), do: do_prime_factors(n,[])
+  # defp do_prime_factors(left,res) when left < 2,do: Enum.reverse(res)
+  # defp do_prime_factors(left,list) when left >= 2 do
+  #   min = prime_helper(left)
+  #   do_prime_factors(left/min,[min|list])
+  # end
 
-  @doc"""
-  #8 Group contiguous equal elements in a list as sublists
-  """
-  def pack(list), do: do_pack(list, [], [])
-  defp do_pack([], _temp, result), do: Enum.reverse(result)
-  # The list only has one element
-  defp do_pack([head | []], temp, result),
-    do: do_pack([], [], [[head | temp] | result])
-  # The first two elements are equal
-  defp do_pack([head, head | tail], temp, result),
-    do: do_pack([head | tail], [head | temp], result)
-  # The first two elements are different
-  defp do_pack([head | tail], temp, result),
-    do: do_pack(tail, [], [[head | temp] | result])
+  # @doc"""
+  # #8 Group contiguous equal elements in a list as sublists
+  # """
+  # def pack(list), do: do_pack(list, [], [])
+  # defp do_pack([], _temp, result), do: Enum.reverse(result)
+  # # The list only has one element
+  # defp do_pack([head | []], temp, result),
+  #   do: do_pack([], [], [[head | temp] | result])
+  # # The first two elements are equal
+  # defp do_pack([head, head | tail], temp, result),
+  #   do: do_pack([head | tail], [head | temp], result)
+  # # The first two elements are different
+  # defp do_pack([head | tail], temp, result),
+  #   do: do_pack(tail, [], [[head | temp] | result])
 
 end
 
