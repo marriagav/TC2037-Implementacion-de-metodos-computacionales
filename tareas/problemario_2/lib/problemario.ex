@@ -83,7 +83,7 @@ defmodule Hw.Ariel2 do
   Single encode to use as helper function
   """
   def single_encode(list), do: do_single_encode(list, 0)
-  defp do_single_encode([head], result), do: [result+1, head]
+  defp do_single_encode([head], result), do: {result+1, head}
   defp do_single_encode([_head | tail], result),
     do: do_single_encode(tail, result+1)
 
