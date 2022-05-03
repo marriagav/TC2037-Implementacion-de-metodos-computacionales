@@ -46,9 +46,31 @@ defmodule Hw.Ariel2 do
   """
   def rotate_left(n,list), do: do_rotate_left(n,list)
   defp do_rotate_left(0,list),do: list
-  defp do_rotate_left(_n,[_head|_tail]) do
-    #!Poner codigo para rotar
-    # do_rotate_left(n-1,list)
+  defp do_rotate_left(n,[head|tail])when n > 0, do: do_rotate_left(n-1,tail++[head])
+  defp do_rotate_left(n,list)when n < 0, do: do_rotate_left(n+1,List.delete_at([List.last(list)|list], length([List.last(list)|list])-1))
+
+  @doc"""
+  #4 Prime Helper
+  """
+  def prime_helper(n), do: do_prime_helper(2,n)
+  defp do_prime_helper(p,n) do
+    p_rounded=Kernel.trunc(p)
+    if rem(n, p_rounded) == 0 do
+      p
+    else
+      do_prime_helper(p_rounded+1,n)
+    end
+  end
+
+
+  @doc"""
+  #4 Prime Factors
+  """
+  def prime_factors(n), do: do_prime_factors(n,[])
+  defp do_prime_factors(left,res) when left < 2,do: Enum.reverse(res)
+  defp do_prime_factors(left,list) when left >= 2 do
+    min = prime_helper(left)
+    do_prime_factors(left/min,[min|list])
   end
 
   @doc"""
@@ -73,3 +95,6 @@ end
 # IO.inspect Hw.Ariel2.insert(6,[3,4])
 # IO.inspect Hw.Ariel2.insertion_sort([4,3,6,8,3,0,9,1,7])
 # IO.inspect Hw.Ariel2.insertion_sort([5,5,5,1,5,5,5])
+# IO.inspect Hw.Ariel2.rotate_left(3,[4,3,6,8,3,0,9,1,7])
+# IO.inspect Hw.Ariel2.rotate_left(-1,[4,3,6,8,3,0,9,1,7])
+IO.inspect Hw.Ariel2.prime_factors(12)
