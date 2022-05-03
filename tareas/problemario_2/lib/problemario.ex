@@ -122,4 +122,4 @@ end
 # IO.inspect Hw.Ariel2.insertion_sort([5,5,5,1,5,5,5])
 # IO.inspect Hw.Ariel2.rotate_left(3,[4,3,6,8,3,0,9,1,7])
 # IO.inspect Hw.Ariel2.rotate_left(-1,[4,3,6,8,3,0,9,1,7])
-IO.inspect Hw.Ariel2.encode([1,1,1,2,2,3,3,4,4,4])
+# IO.inspect Hw.Ariel2.encode([1,1,1,2,2,3,3,4,4,4])
