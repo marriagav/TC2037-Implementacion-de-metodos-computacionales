@@ -90,6 +90,7 @@ defmodule Hw.Ariel2 do
 
 end
 
+# ! Testing
 # IO.inspect Hw.Ariel2.insert(4,[])
 # IO.inspect Hw.Ariel2.insert(4,[1,2,5])
 # IO.inspect Hw.Ariel2.insert(6,[3,4])
@@ -97,4 +98,4 @@ end
 # IO.inspect Hw.Ariel2.insertion_sort([5,5,5,1,5,5,5])
 # IO.inspect Hw.Ariel2.rotate_left(3,[4,3,6,8,3,0,9,1,7])
 # IO.inspect Hw.Ariel2.rotate_left(-1,[4,3,6,8,3,0,9,1,7])
-IO.inspect Hw.Ariel2.prime_factors(12)
+# IO.inspect Hw.Ariel2.prime_factors(12)
