@@ -34,14 +34,14 @@ defmodule Hw.Ariel2 do
   end
 
   @doc"""
-  #2 Insertion Sort
+  #2 Insertion Sort. Sorts a list using the insert function
   """
   def insertion_sort(list), do: do_insertion_sort([],list)
   defp do_insertion_sort(sorted,[]),do: sorted
   defp do_insertion_sort(sorted,[head | tail]),do: do_insertion_sort(insert(sorted, head),tail)
 
   @doc"""
-  #3 Rotate left
+  #3 Rotate left. Rotates the elements of the lists to the left n times
   """
   def rotate_left(list, n), do: do_rotate_left(n,list)
   defp do_rotate_left(0,list),do: list
@@ -65,7 +65,7 @@ defmodule Hw.Ariel2 do
     do: do_pack(tail, [], [[head | temp] | result])
 
   @doc"""
-  #10 Encode
+  #10 Encode. Transforms a list into one with sublists, each of them containing an element and its number of consecutove appearences
   """
   def encode(list), do: do_encode(list)
   defp do_encode(list) do
