@@ -4,6 +4,12 @@
 
 ### Pablo Rocha - A01028638
 
+## Instrucciones del programa
+
+Correr `mix test` en el directorio raíz del proyecto para parsear todos los archivos json. Los resultados en html se crearán en el directorio `./lib/html_output_files`
+
+## Asignación
+
 1 - Selecciona tres lenguajes de programación que te resulten familiares pero que sean de diferentes familias (por ejemplo, C, C++, C#, Java y JavaScript pertenecen a la misma familia), y determina las categorías léxicas que tienen en común (por ejemplo, palabras reservadas, operadores, literales, comentarios, etc.)
 
 2 - Define una notación basada en expresiones-s para representar expresiones regulares.
