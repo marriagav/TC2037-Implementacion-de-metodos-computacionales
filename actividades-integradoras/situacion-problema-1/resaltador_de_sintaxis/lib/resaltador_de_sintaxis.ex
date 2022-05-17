@@ -23,17 +23,13 @@ defmodule ResaltadorDeSintaxis do
     File.write(out_file,finaltext)
   end
 
-  @doc """
-  Function that calls goThroughLine for each line
-  """
+  #Function that calls goThroughLine for each line
   defp eachline(line) do
     a = goThroughLine(line,[])
     a
   end
 
-  @doc """
-  Function that identifies the tolkens of a line and returns them in html format
-  """
+  #Function that identifies the tolkens of a line and returns them in html format
   defp goThroughLine("",tokens), do: Enum.reverse(tokens)
   defp goThroughLine(line,tokens) do
     cond do
@@ -63,9 +59,7 @@ defmodule ResaltadorDeSintaxis do
     end
   end
 
-  @doc """
-  Function that deletes rp value from a string
-  """
+  #Function that deletes rp value from a string
   defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
 end
 
