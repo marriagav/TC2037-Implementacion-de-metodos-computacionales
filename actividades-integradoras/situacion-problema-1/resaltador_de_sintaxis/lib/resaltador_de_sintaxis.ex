@@ -18,7 +18,7 @@ defmodule ResaltadorDeSintaxis do
       |>File.stream!()
       |>Enum.map(&eachline/1)
       |>Enum.filter(fn x -> x !== nil end)
-      |> Enum.join("")
+      |>Enum.join("")
     File.write(out_file,text)
   end
 
