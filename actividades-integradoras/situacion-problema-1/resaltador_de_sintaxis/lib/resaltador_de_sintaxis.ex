@@ -1,16 +1,14 @@
+# Pablo Rocha
+# Miguel Arriaga
+# 17/05/2022
+
 defmodule ResaltadorDeSintaxis do
   @moduledoc """
-  Documentation for `ResaltadorDeSintaxis`.
+  Module to parse a json file into an HTML
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> ResaltadorDeSintaxis.hello()
-      :world
-
+  Function that reads and maps the JSON file
   """
   def json_praser(in_filename,out_file) do
     text =
@@ -22,10 +20,17 @@ defmodule ResaltadorDeSintaxis do
     File.write(out_file,text)
   end
 
+  @doc """
+  Function that calls goThroughLine for each line
+  """
   defp eachline(line) do
     a = goThroughLine(line,[])
     a
   end
+
+  @doc """
+  Function that identifies the tolkens of a line and returns them in html format
+  """
   defp goThroughLine("",tokens), do: Enum.reverse(tokens)
   defp goThroughLine(line,tokens) do
     cond do
@@ -47,6 +52,9 @@ defmodule ResaltadorDeSintaxis do
     end
   end
 
+  @doc """
+  Function that deletes rp value from a string
+  """
   defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
 end
 
