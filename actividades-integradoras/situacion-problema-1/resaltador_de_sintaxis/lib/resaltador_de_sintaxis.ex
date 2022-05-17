@@ -10,7 +10,7 @@ defmodule ResaltadorDeSintaxis do
   @doc """
   Function that reads and maps the JSON file
   """
-  def json_praser(in_filename,out_file) do
+  def json_praser(in_filename,out_file,template_html) do
     text =
       in_filename
       |>File.stream!()
@@ -18,7 +18,7 @@ defmodule ResaltadorDeSintaxis do
       |>Enum.filter(fn x -> x !== nil end)
       |>Enum.join("")
     finaltext =
-      File.read!("template_page.html")
+      File.read!(template_html)
       |>String.replace("~a",text)
     File.write(out_file,finaltext)
   end
@@ -36,24 +36,34 @@ defmodule ResaltadorDeSintaxis do
       Regex.match?(~r|^[\s]+|,line)  ->
         found = Regex.run(~r|^[\s]+|,line)
         goThroughLine(deleteFromString(line,found),[found|tokens])
+
       Regex.match?(~r|^"[a-zA-Z-0-9]+":|,line) ->
         found = Regex.run(~r|^"[a-zA-Z-0-9]+":|,line)
         withoutPunct=hd(found)
         withoutPunct=deleteFromString(withoutPunct,":")
         html = "<spam class=\"object-key\">#{withoutPunct}</spam>"
         goThroughLine(deleteFromString(line,[withoutPunct]),[html|tokens])
-      Regex.match?(~r|^"[a-zA-Z-0-9]+"|,line) ->
-        found = Regex.run(~r|^"[a-zA-Z-0-9]+"|,line)
+
+      Regex.match?(~r|^".+"|,line) ->
+        found = Regex.run(~r|^".+"|,line)
         html = "<spam class=\"string\">#{found}</spam>"
         goThroughLine(deleteFromString(line,found),[html|tokens])
-      Regex.match?(~r|^[0-9]+|,line) ->
-        found = Regex.run(~r|^[0-9]+|,line)
+
+      Regex.match?(~r|^[-\|+]?[\d.]+(?:[e\|E]-?\d+)?|,line) ->
+        found = Regex.run(~r|^[-\|+]?[\d.]+(?:[e\|E]-?\d+)?|,line)
         html = "<spam class=\"number\">#{found}</spam>"
         goThroughLine(deleteFromString(line,found),[html|tokens])
+
+      Regex.match?(~r|^\btrue\b\|^\bnull\b\|^\bfalse\b|,line) ->
+        found = Regex.run(~r|^\btrue\b\|^\bnull\b\|^\bfalse\b|,line)
+        html = "<spam class=\"reserved-word\">#{found}</spam>"
+        goThroughLine(deleteFromString(line,found),[html|tokens])
+
       Regex.match?(~r|^[{}:,]|,line) ->
         found = Regex.run(~r|^[{}:,]|,line)
         html = "<spam class=\"punctuation\">#{found}</spam>"
         goThroughLine(deleteFromString(line,found),[html|tokens])
+
       true->
         Enum.reverse(tokens)
     end
@@ -63,4 +73,4 @@ defmodule ResaltadorDeSintaxis do
   defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
 end
 
-ResaltadorDeSintaxis.json_praser("json_test.txt","js.html")
+# ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html")
