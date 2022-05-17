@@ -17,7 +17,10 @@ defmodule ResaltadorDeSintaxis do
       |>Enum.map(&eachline/1)
       |>Enum.filter(fn x -> x !== nil end)
       |>Enum.join("")
-    File.write(out_file,text)
+    finaltext =
+      File.read!("template_page.html")
+      |>String.replace("~a",text)
+    File.write(out_file,finaltext)
   end
 
   @doc """
@@ -43,6 +46,14 @@ defmodule ResaltadorDeSintaxis do
         withoutPunct=deleteFromString(withoutPunct,":")
         html = "<spam class=\"object-key\">#{withoutPunct}</spam>"
         goThroughLine(deleteFromString(line,[withoutPunct]),[html|tokens])
+      Regex.match?(~r|^"[a-zA-Z-0-9]+"|,line) ->
+        found = Regex.run(~r|^"[a-zA-Z-0-9]+"|,line)
+        html = "<spam class=\"string\">#{found}</spam>"
+        goThroughLine(deleteFromString(line,found),[html|tokens])
+      Regex.match?(~r|^[0-9]+|,line) ->
+        found = Regex.run(~r|^[0-9]+|,line)
+        html = "<spam class=\"number\">#{found}</spam>"
+        goThroughLine(deleteFromString(line,found),[html|tokens])
       Regex.match?(~r|^[{}:,]|,line) ->
         found = Regex.run(~r|^[{}:,]|,line)
         html = "<spam class=\"punctuation\">#{found}</spam>"
@@ -58,4 +69,4 @@ defmodule ResaltadorDeSintaxis do
   defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
 end
 
-ResaltadorDeSintaxis.json_praser("json_test.txt","json.html")
+ResaltadorDeSintaxis.json_praser("json_test.txt","js.html")
