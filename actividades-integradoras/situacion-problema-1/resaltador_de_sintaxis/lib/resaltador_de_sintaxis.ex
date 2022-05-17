@@ -18,31 +18,34 @@ defmodule ResaltadorDeSintaxis do
       |>File.stream!()
       |>Enum.map(&eachline/1)
       |>Enum.filter(fn x -> x !== nil end)
-      |>Enum.map(&hd/1)
-      |> Enum.join("\n")
+      # |>Enum.map(&hd/1)
+      |> Enum.join("")
     File.write(out_file,text)
   end
 
   defp eachline(line) do
-    withoutabs = deleteWS(line)
-    # IO.inspect withoutabs
-    # Regex.run(~r|^[{}:,""]|,withoutabs)
-    # Regex.run(~r|\t|,line)
-    # Regex.run(~r|^[{}:,""]|,line)
-    goThroughLine(line,[])
+    a = goThroughLine(line,[])
+    # IO.puts "FINAL LINE"
+    # IO.inspect a
+    a
   end
   defp goThroughLine("",tokens), do: Enum.reverse(tokens)
   defp goThroughLine(line,tokens) do
-    IO.inspect tokens
-    if Regex.match?(~r|^\s|,line) do
-      found = Regex.run(~r|^\s|,line)
-      goThroughLine(deleteFromString(line,found),[found|tokens])
-    end
-    if Regex.match?(~r|^[{}:,""]|,line) do
-      found = Regex.run(~r|^[{}:,""]|,line)
-      IO.puts "AQUI"
-      IO.inspect found
-      goThroughLine(deleteFromString(line,found),[found|tokens])
+    cond do
+      Regex.match?(~r|^[\s]+|,line)  ->
+        found = Regex.run(~r|^[\s]+|,line)
+        IO.inspect found
+        goThroughLine(deleteFromString(line,found),[found|tokens])
+      Regex.match?(~r|^"[a-zA-Z-0-9]+":|,line) ->
+        found = Regex.run(~r|^"[a-zA-Z-0-9]+":|,line)
+        html = "<spam class=\"object-key\">#{found}</spam>"
+        goThroughLine(deleteFromString(line,found),[html|tokens])
+      Regex.match?(~r|^[{}:,]|,line) ->
+        found = Regex.run(~r|^[{}:,]|,line)
+        html = "<spam class=\"punctuation\">#{found}</spam>"
+        goThroughLine(deleteFromString(line,found),[html|tokens])
+      true->
+        Enum.reverse(tokens)
     end
   end
 
