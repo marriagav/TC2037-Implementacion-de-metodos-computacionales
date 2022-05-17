@@ -1,7 +1,0 @@
-{
-    {
-        "lalal": "stridd",
-        "numero":7
-    
-    }
-}
