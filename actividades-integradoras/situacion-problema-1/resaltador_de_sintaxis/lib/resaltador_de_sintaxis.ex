@@ -37,32 +37,32 @@ defmodule ResaltadorDeSintaxis do
         found = Regex.run(~r|^[\s]+|,line)
         goThroughLine(deleteWS(line),[found|tokens])
 
-      Regex.match?(~r|^".+"[\s]*:|,line) ->
-        found = Regex.run(~r|^".+"[\s]*:|,line)
+      Regex.match?(~r|^".+?(?=")"[\s]*:|,line) ->
+        found = Regex.run(~r|^".+?(?=")"[\s]*:|,line)
         withoutPunct=hd(found)
         withoutPunct=deletePunctFromKey(withoutPunct)
         html = "<spam class=\"object-key\">#{withoutPunct}</spam>"
-        goThroughLine(deleteFromString(line,[withoutPunct]),[html|tokens])
+        goThroughLine(deleteFromString(line,withoutPunct),[html|tokens])
 
       Regex.match?(~r|^".*"|,line) ->
         found = Regex.run(~r|^".*"|,line)
         html = "<spam class=\"string\">#{found}</spam>"
-        goThroughLine(deleteFromString(line,found),[html|tokens])
+        goThroughLine(deleteFromString(line,hd(found)),[html|tokens])
 
       Regex.match?(~r|^[-\|+]?[\d.]+(?:[e\|E]-?\d+)?|,line) ->
         found = Regex.run(~r|^[-\|+]?[\d.]+(?:[e\|E]-?\d+)?|,line)
         html = "<spam class=\"number\">#{found}</spam>"
-        goThroughLine(deleteFromString(line,found),[html|tokens])
+        goThroughLine(deleteFromString(line,hd(found)),[html|tokens])
 
       Regex.match?(~r|^\btrue\b\|^\bnull\b\|^\bfalse\b|,line) ->
         found = Regex.run(~r|^\btrue\b\|^\bnull\b\|^\bfalse\b|,line)
         html = "<spam class=\"reserved-word\">#{found}</spam>"
-        goThroughLine(deleteFromString(line,found),[html|tokens])
+        goThroughLine(deleteFromString(line,hd(found)),[html|tokens])
 
       Regex.match?(~r|^[{}:,\[\]]|,line) ->
         found = Regex.run(~r|^[{}:,\[\]]*|,line)
         html = "<spam class=\"punctuation\">#{found}</spam>"
-        goThroughLine(deleteFromString(line,found),[html|tokens])
+        goThroughLine(deleteFromString(line,hd(found)),[html|tokens])
 
       true->
         Enum.reverse(tokens)
@@ -71,9 +71,10 @@ defmodule ResaltadorDeSintaxis do
 
 
   #Function that deletes rp value from a string
-  defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
+  defp deleteFromString(string,rp) , do: String.trim_leading(string, rp)
   defp deleteWS(string), do: String.trim_leading(string)
   defp deletePunctFromKey(string), do: String.trim_trailing(string, ":")
 end
 
+# Quick test
 # ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html")
