@@ -37,15 +37,15 @@ defmodule ResaltadorDeSintaxis do
         found = Regex.run(~r|^[\s]+|,line)
         goThroughLine(deleteWS(line),[found|tokens])
 
-      Regex.match?(~r|^"[a-zA-Z-0-9]+"[\s]*:|,line) ->
-        found = Regex.run(~r|^"[a-zA-Z-0-9]+"[\s]*:|,line)
+      Regex.match?(~r|^".+"[\s]*:|,line) ->
+        found = Regex.run(~r|^".+"[\s]*:|,line)
         withoutPunct=hd(found)
-        withoutPunct=deleteFromString(withoutPunct,":")
+        withoutPunct=deletePunctFromKey(withoutPunct)
         html = "<spam class=\"object-key\">#{withoutPunct}</spam>"
         goThroughLine(deleteFromString(line,[withoutPunct]),[html|tokens])
 
-      Regex.match?(~r|^".+"|,line) ->
-        found = Regex.run(~r|^".+"|,line)
+      Regex.match?(~r|^".*"|,line) ->
+        found = Regex.run(~r|^".*"|,line)
         html = "<spam class=\"string\">#{found}</spam>"
         goThroughLine(deleteFromString(line,found),[html|tokens])
 
@@ -73,6 +73,7 @@ defmodule ResaltadorDeSintaxis do
   #Function that deletes rp value from a string
   defp deleteFromString(string,rp) when is_binary(string) do string |> String.replace(rp, "") end
   defp deleteWS(string), do: String.trim_leading(string)
+  defp deletePunctFromKey(string), do: String.trim_trailing(string, ":")
 end
 
 # ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html")
