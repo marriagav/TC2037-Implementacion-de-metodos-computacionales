@@ -8,7 +8,8 @@
     <h1>Date:</h1>
     <pre>
 <spam class="punctuation">{</spam><spam class="object-key">"web-app"</spam><spam class="punctuation">:</spam> 
-  <spam class="object-key">"servlet"</spam><spam class="punctuation">:</spam>     <spam class="punctuation">{</spam>
+  <spam class="object-key">"servlet"</spam><spam class="punctuation">:</spam> <spam class="punctuation">[</spam>
+    <spam class="punctuation">{</spam>
       <spam class="object-key">"servlet-name"</spam><spam class="punctuation">:</spam> <spam class="string">"cofaxCDS"</spam><spam class="punctuation">,</spam>
       <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.CDSServlet"</spam><spam class="punctuation">,</spam>
       <spam class="object-key">"init-param"</spam><spam class="punctuation">:</spam> <spam class="punctuation">{</spam>
@@ -46,26 +47,26 @@
         <spam class="object-key">"dataStoreUrl"</spam><spam class="punctuation">:</spam> <spam class="string">"jdbcmicrosoftsqlserver//LOCALHOST1433;DatabaseName=goon"</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreUser"</spam><spam class="punctuation">:</spam> <spam class="string">"sa"</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStorePassword"</spam><spam class="punctuation">:</spam> <spam class="string">"dataStoreTestQuery"</spam><spam class="punctuation">,</spam>
-        <spam class="object-key">"dataStoreTestQuery"</spam><spam class="punctuation">:</spam> <spam class="string">"SETNOCOUNTON;selecttest='test';"</spam><spam class="punctuation">,</spam>
+        <spam class="object-key">"dataStoreTestQuery"</spam><spam class="punctuation">:</spam> <spam class="string">"SET NOCOUNT ON;select test='test';"</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreLogFile"</spam><spam class="punctuation">:</spam> <spam class="string">"/usr/local/tomcat/logs/datastore.log"</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreInitConns"</spam><spam class="punctuation">:</spam> <spam class="number">10</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreMaxConns"</spam><spam class="punctuation">:</spam> <spam class="number">100</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreConnUsageLimit"</spam><spam class="punctuation">:</spam> <spam class="number">100</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"dataStoreLogLevel"</spam><spam class="punctuation">:</spam> <spam class="string">"debug"</spam><spam class="punctuation">,</spam>
-        <spam class="object-key">"maxUrlLength"</spam><spam class="punctuation">:</spam> <spam class="number">500</spam><spam class="punctuation">}</spam><spam class="punctuation">,</spam>
+        <spam class="object-key">"maxUrlLength"</spam><spam class="punctuation">:</spam> <spam class="number">500</spam><spam class="punctuation">}},</spam>
     <spam class="punctuation">{</spam>
       <spam class="object-key">"servlet-name"</spam><spam class="punctuation">:</spam> <spam class="string">"cofaxEmail"</spam><spam class="punctuation">,</spam>
       <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.EmailServlet"</spam><spam class="punctuation">,</spam>
       <spam class="object-key">"init-param"</spam><spam class="punctuation">:</spam> <spam class="punctuation">{</spam>
       <spam class="object-key">"mailHost"</spam><spam class="punctuation">:</spam> <spam class="string">"mail1"</spam><spam class="punctuation">,</spam>
-      <spam class="object-key">"mailHostOverride"</spam><spam class="punctuation">:</spam> <spam class="string">"mail2"</spam><spam class="punctuation">}</spam><spam class="punctuation">,</spam>
+      <spam class="object-key">"mailHostOverride"</spam><spam class="punctuation">:</spam> <spam class="string">"mail2"</spam><spam class="punctuation">}},</spam>
     <spam class="punctuation">{</spam>
       <spam class="object-key">"servlet-name"</spam><spam class="punctuation">:</spam> <spam class="string">"cofaxAdmin"</spam><spam class="punctuation">,</spam>
-      <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.AdminServlet"</spam><spam class="punctuation">}</spam><spam class="punctuation">,</spam>
+      <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.AdminServlet"</spam><spam class="punctuation">},</spam>
 
     <spam class="punctuation">{</spam>
       <spam class="object-key">"servlet-name"</spam><spam class="punctuation">:</spam> <spam class="string">"fileServlet"</spam><spam class="punctuation">,</spam>
-      <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.FileServlet"</spam><spam class="punctuation">}</spam><spam class="punctuation">,</spam>
+      <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cds.FileServlet"</spam><spam class="punctuation">},</spam>
     <spam class="punctuation">{</spam>
       <spam class="object-key">"servlet-name"</spam><spam class="punctuation">:</spam> <spam class="string">"cofaxTools"</spam><spam class="punctuation">,</spam>
       <spam class="object-key">"servlet-class"</spam><spam class="punctuation">:</spam> <spam class="string">"org.cofax.cms.CofaxToolsServlet"</spam><spam class="punctuation">,</spam>
@@ -80,16 +81,17 @@
         <spam class="object-key">"fileTransferFolder"</spam><spam class="punctuation">:</spam> <spam class="string">"/usr/local/tomcat/webapps/content/fileTransferFolder"</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"lookInContext"</spam><spam class="punctuation">:</spam> <spam class="number">1</spam><spam class="punctuation">,</spam>
         <spam class="object-key">"adminGroupID"</spam><spam class="punctuation">:</spam> <spam class="number">4</spam><spam class="punctuation">,</spam>
-        <spam class="object-key">"betaServer"</spam><spam class="punctuation">:</spam> <spam class="reserved-word">true</spam><spam class="punctuation">}</spam>  <spam class="object-key">"servlet-mapping"</spam><spam class="punctuation">:</spam> <spam class="punctuation">{</spam>
+        <spam class="object-key">"betaServer"</spam><spam class="punctuation">:</spam> <spam class="reserved-word">true</spam><spam class="punctuation">}}],</spam>
+  <spam class="object-key">"servlet-mapping"</spam><spam class="punctuation">:</spam> <spam class="punctuation">{</spam>
     <spam class="object-key">"cofaxCDS"</spam><spam class="punctuation">:</spam> <spam class="string">"/"</spam><spam class="punctuation">,</spam>
     <spam class="object-key">"cofaxEmail"</spam><spam class="punctuation">:</spam> <spam class="string">"/cofaxutil/aemail/*"</spam><spam class="punctuation">,</spam>
     <spam class="object-key">"cofaxAdmin"</spam><spam class="punctuation">:</spam> <spam class="string">"/admin/*"</spam><spam class="punctuation">,</spam>
     <spam class="object-key">"fileServlet"</spam><spam class="punctuation">:</spam> <spam class="string">"/static/*"</spam><spam class="punctuation">,</spam>
-    <spam class="object-key">"cofaxTools"</spam><spam class="punctuation">:</spam> <spam class="string">"/tools/*"</spam><spam class="punctuation">}</spam><spam class="punctuation">,</spam>
+    <spam class="object-key">"cofaxTools"</spam><spam class="punctuation">:</spam> <spam class="string">"/tools/*"</spam><spam class="punctuation">},</spam>
 
   <spam class="object-key">"taglib"</spam><spam class="punctuation">:</spam> <spam class="punctuation">{</spam>
     <spam class="object-key">"taglib-uri"</spam><spam class="punctuation">:</spam> <spam class="string">"cofax.tld"</spam><spam class="punctuation">,</spam>
-    <spam class="object-key">"taglib-location"</spam><spam class="punctuation">:</spam> <spam class="string">"/WEB-INF/tlds/cofax.tld"</spam><spam class="punctuation">}</spam>
+    <spam class="object-key">"taglib-location"</spam><spam class="punctuation">:</spam> <spam class="string">"/WEB-INF/tlds/cofax.tld"</spam><spam class="punctuation">}}}</spam>
 
     </pre>
   </body>
