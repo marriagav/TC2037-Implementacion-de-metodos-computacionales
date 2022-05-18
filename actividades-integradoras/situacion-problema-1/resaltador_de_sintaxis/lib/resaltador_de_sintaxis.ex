@@ -37,15 +37,15 @@ defmodule ResaltadorDeSintaxis do
         found = Regex.run(~r|^[\s]+|,line)
         goThroughLine(deleteWS(line),[found|tokens])
 
-      Regex.match?(~r|^".+?(?=")"[\s]*:|,line) ->
-        found = Regex.run(~r|^".+?(?=")"[\s]*:|,line)
+      Regex.match?(~r|^"[^,]+?(?=["])"[\s]*:|,line) ->
+        found = Regex.run(~r|^"[^,]+?(?=["])"[\s]*:|,line)
         withoutPunct=hd(found)
         withoutPunct=deletePunctFromKey(withoutPunct)
         html = "<spam class=\"object-key\">#{withoutPunct}</spam>"
         goThroughLine(deleteFromString(line,withoutPunct),[html|tokens])
 
-      Regex.match?(~r|^".*"|,line) ->
-        found = Regex.run(~r|^".*"|,line)
+      Regex.match?(~r|^".*?(?=["])"|,line) ->
+        found = Regex.run(~r|^".*?(?=["])"|,line)
         html = "<spam class=\"string\">#{found}</spam>"
         goThroughLine(deleteFromString(line,hd(found)),[html|tokens])
 
