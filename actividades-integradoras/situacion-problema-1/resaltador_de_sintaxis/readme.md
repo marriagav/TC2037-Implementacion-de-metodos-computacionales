@@ -6,7 +6,25 @@
 
 ## Instrucciones para correr el programa
 
+### Para correr los tests:
 Correr `mix test` en el directorio raíz del proyecto para parsear todos los archivos json. Los resultados en html se crearán en el directorio `./lib/html_output_files`
+### Para llamar la función:
+La función para parsear arhivos JSON se llama `json_praser` y contiene 3 argumentos:
+<ul>
+    <li>in_filename: El path/nombre del archivo json que quieres parsear</li>
+    <li>out_file: El path/nombre deseado del archivo html de salida</li>
+    <li>template_html: El path/nombre de el documento del html que se usa como template</li>
+</ul>
+
+Por lo tanto, un ejemplo para llamar la función sería:
+`ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html")`
+
+En donde:
+<ul>
+    <li>in_filename: "./test_json_files/json_test.json"</li>
+    <li>out_file: "./html_output_files/json_test.html"</li>
+    <li>template_html: El path/nombre de el documento del html que se usa como template</li>
+</ul>
 
 ## Reflexión
 
