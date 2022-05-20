@@ -8,15 +8,31 @@
 
 Correr `mix test` en el directorio raíz del proyecto para parsear todos los archivos json. Los resultados en html se crearán en el directorio `./lib/html_output_files`
 
-## Reflexión 
+## Reflexión
 
 Reflexiona sobre la solución planteada, los algoritmos implementados y sobre el tiempo de ejecución de estos.
+
+Se puede concluir que la solución planteada es concisa y optima. El equipo eligió parsear el lenguaje JSON, esto debido a dos factores, el primero su simplicidad y bajo número número de tokens, el segundo siendo su amplio uso en el mundo de la programación. JSON es el lenguaje universal para pasar información en métodos GET,PUT PUSH, etc. Los tokenes que identifico el equipo fueron:
+
+<ul>
+    <li>LLaves: estas se componen de strings, en su interior puden contener cualquier character</li>
+    <li>Strings: Son caracters delimitados por comillas
+    </li>
+    <li>Numeros
+    </li>
+    <li>Palabras Reservadas: Estas son esfpecificas del lenguaje palabras como true,false, null.
+    </li>
+    <li>Puntuación: Son símbolos de puntuación especificos de JSON, estos incluyer: []{}.,
+    </li>
+</ul>
+
+Sobre complejidad la solución plantada tiene una gran implementación ya que tiene complejidad de 0(n) donde n es el número de tokens que se encuentran en el documento.
 
 ## Análisis de complejidad
 
 Calcula la complejidad de tu algoritmo basada en el número de iteraciones y contrástala con el tiempo obtenido en el punto 7.
 
-En el ámbito de la complejidad temporal, primero debemos de considerar cuánto tarda en ejecutarse una búsqueda con una expresión regular. En este caso consideraremos que la complejidad de cada expresión regular es constante, ya que unicamente estamos buscando cada "token" al inicio de cada línea. 
+En el ámbito de la complejidad temporal, primero debemos de considerar cuánto tarda en ejecutarse una búsqueda con una expresión regular. En este caso consideraremos que la complejidad de cada expresión regular es constante, ya que unicamente estamos buscando cada "token" al inicio de cada línea.
 
 ## Implicaciones éticas
 
