@@ -24,7 +24,9 @@ Se puede concluir que la solución planteada es concisa y optima. El equipo elig
     </li>
 </ul>
 
-Sobre complejidad la solución plantada tiene una gran implementación ya que tiene complejidad de O(n) donde n es el número de tolkens que se encuentran en el documento.
+Para identificar estos tolkens con el programa, utilizamos expresiones regulares, que nos sirven para distinguir cosas específicas en un texto. En el caso de añadir tolkens adicionales no habría mucho problema, solo deberían de agregarse más expresiones regulares.
+
+Igualmente, para utilizar el parser para otro lenguaje solo se deberían de cambiar las expresiones regulares para igualar los tolkens del lenguaje deseado.
 
 ## Análisis de complejidad
 
