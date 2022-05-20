@@ -18,6 +18,9 @@ Calcula la complejidad de tu algoritmo basada en el número de iteraciones y con
 
 En el ámbito de la complejidad temporal, primero debemos de considerar cuánto tarda en ejecutarse una búsqueda con una expresión regular. En este caso consideraremos que la complejidad de cada expresión regular es constante, ya que unicamente estamos buscando cada "token" al inicio de cada línea. 
 
+Teniendo esto en mente, analicemos el algoritmo `json_praser`.
+Esta función esta encargada de leer el archivo json y aplicar la función `eachline` para cada línea del archivo. La lectura se realiza en tiempo constante, por lo que la verdadera complejidad temporal de este programa viene en la función `goThroughLine`. La cual toma como argumento cada línea y busca la expresión regular al principio. Esta función se llama recursivamente hasta que la línea se encuentre vacía. Es por esto que la complejidad temporal del algoritmo es `O(n)` en donde `n` es el número de tokens en el json.
+
 ## Implicaciones éticas
 
 Agrega además una breve reflexión sobre las implicaciones éticas que el tipo de tecnología que desarrollaste pudiera tener en la sociedad
