@@ -9,7 +9,7 @@
 ### Para correr los tests:
 Correr `mix test` en el directorio raíz del proyecto para parsear todos los archivos json. Los resultados en html se crearán en el directorio `./lib/html_output_files`
 ### Para llamar la función:
-La función para parsear arhivos JSON se llama `json_praser` y contiene 3 argumentos:
+La función para parsear arhivos JSON se llama `json_praser`, esta función se encuentra en el módulo `ResaltadorDeSintaxis` en el archivo `resaltador_de_sintaxis.ex` en el directorio `lib` y contiene 3 argumentos:
 <ul>
     <li>in_filename: El path/nombre del archivo json que quieres parsear</li>
     <li>out_file: El path/nombre deseado del archivo html de salida</li>
