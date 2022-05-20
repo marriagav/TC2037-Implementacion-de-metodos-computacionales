@@ -24,7 +24,7 @@ Se puede concluir que la solución planteada es concisa y optima. El equipo elig
     </li>
 </ul>
 
-Sobre complejidad la solución plantada tiene una gran implementación ya que tiene complejidad de 0(n) donde n es el número de tolkens que se encuentran en el documento.
+Sobre complejidad la solución plantada tiene una gran implementación ya que tiene complejidad de O(n) donde n es el número de tolkens que se encuentran en el documento.
 
 ## Análisis de complejidad
 
