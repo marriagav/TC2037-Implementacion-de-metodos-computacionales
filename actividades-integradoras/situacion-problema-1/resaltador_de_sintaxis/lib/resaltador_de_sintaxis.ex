@@ -89,4 +89,4 @@ defmodule ResaltadorDeSintaxis do
 end
 
 # Quick test
-# ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html")
+# :timer.tc(fn -> ResaltadorDeSintaxis.json_praser("./test_json_files/json_test.json","./html_output_files/json_test.html","template_page.html") end)
