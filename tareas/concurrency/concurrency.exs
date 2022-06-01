@@ -69,6 +69,6 @@ end
 
 #Quick test
 #Without concurrency
-Hw.Prime.meassure_time(fn -> Hw.Prime.sum_primes(100000) end)
+Hw.Primes.meassure_time(fn -> Hw.Primes.sum_primes(100000) end)
 #With concurrency
-Hw.Prime.meassure_time(fn -> Hw.Prime.sum_primes_parallel(100000,5) end)
+Hw.Primes.meassure_time(fn -> Hw.Primes.sum_primes_parallel(100000,5) end)
