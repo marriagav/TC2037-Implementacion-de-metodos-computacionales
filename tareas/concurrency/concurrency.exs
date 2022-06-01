@@ -21,10 +21,11 @@ defmodule Concurrency do
   defp sumPrimesP(start,finish,sum) when start>finish, do: sum
   defp sumPrimesP(start,finish,sum),do: sumPrimesP(start,finish-1,isPrime(finish)+sum)
 
-  defp sumPrimes(start,finish), do: sumPrimesP(start,finish,0)
+  def sum_primes(start,finish), do: sumPrimesP(start,finish,0)
+  def sum_primes(finish), do: sumPrimesP(1,finish,0)
 
-  def concurrencyPrimes(n,1), do: sumPrimes(1,n)
-  def concurrencyPrimes(n,threads) do
+  def sum_primes_parallel(n,1), do: sum_primes(1,n)
+  def sum_primes_parallel(n,threads) do
     step = round(Float.floor(n/threads,0))
     modulus = n-(step * threads)
     x= for i <- 0..threads-1 do
@@ -39,7 +40,9 @@ defmodule Concurrency do
       end
     end
     x
-    |> Enum.map(&Task.async(fn -> sumPrimes(Enum.at(&1,0),Enum.at(&1,1)) end))
+    |> Enum.map(&Task.async(fn -> sum_primes(Enum.at(&1,0),Enum.at(&1,1)) end))
+    |> Enum.map(&Task.await(&1))
+    |> Enum.sum()
   end
 
 end
