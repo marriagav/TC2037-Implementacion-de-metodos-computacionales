@@ -2,7 +2,7 @@
 #Intro: Pablo Rocha, Miguel Arriaga, suma de numeros primos con concurrencia
 
 
-defmodule Concurrency do
+defmodule Hw.Primes do
 
   # Checks if a number n is divisible by i
   defp checkDivisible(_i,_l,1),do: 0
@@ -69,6 +69,6 @@ end
 
 #Quick test
 #Without concurrency
-Concurrency.meassure_time(fn -> Concurrency.sum_primes(100000) end)
+Hw.Prime.meassure_time(fn -> Hw.Prime.sum_primes(100000) end)
 #With concurrency
-Concurrency.meassure_time(fn -> Concurrency.sum_primes_parallel(100000,5) end)
+Hw.Prime.meassure_time(fn -> Hw.Prime.sum_primes_parallel(100000,5) end)
