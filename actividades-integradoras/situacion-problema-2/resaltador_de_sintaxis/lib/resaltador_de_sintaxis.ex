@@ -31,7 +31,6 @@ defmodule ResaltadorDeSintaxis do
   #Function that calls goThroughLine for each line
   defp eachline(line) do
     goThroughLine(line,[])
-
   end
 
   #Function that identifies the tolkens of a line and returns them in html format
@@ -97,16 +96,19 @@ defmodule ResaltadorDeSintaxis do
     |> IO.inspect()
   end
 
+  @doc """
+  MAIN Function that calls the parser with multiple threads
+  """
   def multi_parser(dir,template) do
     IO.puts "MAIN THREAD START"
     Path.wildcard(dir)
-    |> IO.inspect()
     |> Enum.map(&Task.async(fn -> json_praser(&1,createOutputName(&1),template) end))
     |> Enum.map(&Task.await(&1))
     IO.puts "MAIN THREAD FINISH"
   end
 
-  def createOutputName(file) do
+  # Function to create the output files names
+  defp createOutputName(file) do
     String.replace(file,"test_json_files/","html_output_files/")
     |> String.replace(".json",".html")
   end
