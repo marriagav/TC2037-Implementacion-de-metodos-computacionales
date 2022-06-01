@@ -69,6 +69,6 @@ end
 
 #Quick test
 #Without concurrency
-Concurrency.meassure_time(fn -> Concurrency.sum_primes(10000) end)
+Concurrency.meassure_time(fn -> Concurrency.sum_primes(100000) end)
 #With concurrency
-Concurrency.meassure_time(fn -> Concurrency.sum_primes_parallel(10000,4) end)
+Concurrency.meassure_time(fn -> Concurrency.sum_primes_parallel(100000,5) end)
