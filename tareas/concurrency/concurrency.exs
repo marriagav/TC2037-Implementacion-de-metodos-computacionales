@@ -23,22 +23,26 @@ defmodule Concurrency do
 
   defp sumPrimes(start,finish), do: sumPrimesP(start,finish,0)
 
+  def concurrencyPrimes(n,1), do: sumPrimes(1,n)
   def concurrencyPrimes(n,threads) do
     step = round(Float.floor(n/threads,0))
     modulus = n-(step * threads)
-    IO.puts modulus
-    IO.puts step
     x= for i <- 0..threads-1 do
       if i == 0 do
-        [(step*i)+1,(step*(i+1))+modulus-1]
+        [1,(step*(i+1))+modulus-1]
       else
-        [(step*i)+modulus,(step*(i+1)+modulus-1)]
+        if i == threads-1 do
+          [(step*i)+modulus,(step*(i+1)+modulus)]
+        else
+          [(step*i)+modulus,(step*(i+1)+modulus-1)]
+        end
       end
     end
     x
-    # |> Enum.map(&Task.async(fn -> sumPrimes(&1,)))
+    |> Enum.map(&Task.async(fn -> sumPrimes(Enum.at(&1,0),Enum.at(&1,1)) end))
   end
 
 end
 
-IO.inspect Concurrency.concurrencyPrimes(100,8)
+# nums=Concurrency.concurrencyPrimes(100,4)
+# IO.inspect(: :as_list)
