@@ -45,7 +45,21 @@ defmodule Concurrency do
     |> Enum.sum()
   end
 
+  @doc """
+  Function to meassure execution time
+  """
+  def meassure_time(function) do
+    function
+    |> :timer.tc()
+    |> elem(0)
+    |> Kernel./(1_000_000)
+    |> IO.inspect()
+  end
+
 end
 
-# nums=Concurrency.concurrencyPrimes(100,4)
-# IO.inspect(: :as_list)
+#Quick test
+#Without concurrency
+Concurrency.meassure_time(fn -> Concurrency.sum_primes(10000) end)
+#With concurrency
+Concurrency.meassure_time(fn -> Concurrency.sum_primes_parallel(10000,4) end)
