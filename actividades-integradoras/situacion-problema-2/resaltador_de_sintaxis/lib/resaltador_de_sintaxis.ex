@@ -107,6 +107,16 @@ defmodule ResaltadorDeSintaxis do
     IO.puts "MAIN THREAD FINISH"
   end
 
+  @doc """
+  Function that calls the parser without concurrency
+  """
+  def single_parser(dir,template) do
+    IO.puts "MAIN THREAD START"
+    Path.wildcard(dir)
+    |> Enum.map(&json_praser(&1,createOutputName(&1),template))
+    IO.puts "MAIN THREAD FINISH"
+  end
+
   # Function to create the output files names
   defp createOutputName(file) do
     String.replace(file,"test_json_files/","html_output_files/")
@@ -116,4 +126,7 @@ defmodule ResaltadorDeSintaxis do
 end
 
 # Quick test
+# With concurrency:
 # ResaltadorDeSintaxis.meassure_time(fn -> ResaltadorDeSintaxis.multi_parser("./test_json_files/*.json","template_page.html") end)
+# Without concurrency:
+# ResaltadorDeSintaxis.meassure_time(fn -> ResaltadorDeSintaxis.single_parser("./test_json_files/*.json","template_page.html") end)
