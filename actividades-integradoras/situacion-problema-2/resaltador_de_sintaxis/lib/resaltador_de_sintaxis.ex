@@ -8,7 +8,39 @@ defmodule ResaltadorDeSintaxis do
   """
 
   @doc """
-  Main function that reads and maps the JSON file
+  Function to meassure execution time
+  """
+  def meassure_time(function) do
+    function
+    |> :timer.tc()
+    |> elem(0)
+    |> Kernel./(1_000_000)
+    |> IO.inspect()
+  end
+
+  @doc """
+  MAIN Function that calls the parser with multiple threads
+  """
+  def multi_parser(dir,template) do
+    IO.puts "WITH CONCURRENCY"
+    IO.puts "MAIN THREAD START"
+    Path.wildcard(dir)
+    |> Enum.map(&Task.async(fn -> json_praser(&1,createOutputName(&1),template) end))
+    |> Enum.map(&Task.await(&1))
+    IO.puts "MAIN THREAD FINISH"
+  end
+
+  @doc """
+  Function that calls the parser without concurrency
+  """
+  def single_parser(dir,template) do
+    IO.puts "WITHOUT CONCURRENCY"
+    Path.wildcard(dir)
+    |> Enum.map(&json_praser(&1,createOutputName(&1),template))
+  end
+
+  @doc """
+  Function that reads and maps the JSON file
   """
   def json_praser(in_filename,out_file,template_html) do
     text =
@@ -84,38 +116,6 @@ defmodule ResaltadorDeSintaxis do
   defp deleteFromString(string,rp) , do: String.trim_leading(string, rp)
   defp deleteWS(string), do: String.trim_leading(string)
   defp deletePunctFromKey(string), do: String.trim_trailing(string, ":")
-
-  @doc """
-  Function to meassure execution time
-  """
-  def meassure_time(function) do
-    function
-    |> :timer.tc()
-    |> elem(0)
-    |> Kernel./(1_000_000)
-    |> IO.inspect()
-  end
-
-  @doc """
-  MAIN Function that calls the parser with multiple threads
-  """
-  def multi_parser(dir,template) do
-    IO.puts "WITH CONCURRENCY"
-    IO.puts "MAIN THREAD START"
-    Path.wildcard(dir)
-    |> Enum.map(&Task.async(fn -> json_praser(&1,createOutputName(&1),template) end))
-    |> Enum.map(&Task.await(&1))
-    IO.puts "MAIN THREAD FINISH"
-  end
-
-  @doc """
-  Function that calls the parser without concurrency
-  """
-  def single_parser(dir,template) do
-    IO.puts "WITHOUT CONCURRENCY"
-    Path.wildcard(dir)
-    |> Enum.map(&json_praser(&1,createOutputName(&1),template))
-  end
 
   # Function to create the output files names
   defp createOutputName(file) do
