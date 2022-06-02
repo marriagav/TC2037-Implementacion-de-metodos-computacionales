@@ -23,11 +23,11 @@ defmodule ResaltadorDeSintaxis do
   """
   def multi_parser(dir,template) do
     IO.puts "WITH CONCURRENCY"
-    IO.puts "MAIN THREAD START"
+    IO.puts "main thread start"
     Path.wildcard(dir)
     |> Enum.map(&Task.async(fn -> json_praser(&1,createOutputName(&1),template) end))
     |> Enum.map(&Task.await(&1))
-    IO.puts "MAIN THREAD FINISH"
+    IO.puts "main thread finish"
   end
 
   @doc """
