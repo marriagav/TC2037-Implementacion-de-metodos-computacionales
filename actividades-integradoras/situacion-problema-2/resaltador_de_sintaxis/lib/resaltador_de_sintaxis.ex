@@ -100,6 +100,7 @@ defmodule ResaltadorDeSintaxis do
   MAIN Function that calls the parser with multiple threads
   """
   def multi_parser(dir,template) do
+    IO.puts "WITH CONCURRENCY"
     IO.puts "MAIN THREAD START"
     Path.wildcard(dir)
     |> Enum.map(&Task.async(fn -> json_praser(&1,createOutputName(&1),template) end))
@@ -111,10 +112,9 @@ defmodule ResaltadorDeSintaxis do
   Function that calls the parser without concurrency
   """
   def single_parser(dir,template) do
-    IO.puts "MAIN THREAD START"
+    IO.puts "WITHOUT CONCURRENCY"
     Path.wildcard(dir)
     |> Enum.map(&json_praser(&1,createOutputName(&1),template))
-    IO.puts "MAIN THREAD FINISH"
   end
 
   # Function to create the output files names
