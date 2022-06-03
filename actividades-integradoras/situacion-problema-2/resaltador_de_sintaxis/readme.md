@@ -40,4 +40,6 @@ Después de correr el programa 5 veces de forma concurrente y 5 veces de forma s
 Como se puede observar, el programa se ejecuto 0.1481912 segundos más rápido (en promedio) cuando se ejecuto con concurrencia en comparación con su ejecución sin concurrencia. Esto representa una diferencia de velocidad del 35%. Adicionalmente, esta es una diferencia que solo se hace mayor conforme mayor sea el número de archivos que se vayan a parsear.
 
 ## Implicaciones éticas
+A pesar de que esta sea una técnica de programación que puede acelerar muchísimo el tiempo de ejecución de un programa, también requiere de más recursos computacionales. Nos impulsa a cada vez utilizar más energía y procesadores más veloces. Es un hecho que estamos viviendo en una época de crisis ambiental y calentamiento global. 
 
+Estos chips de procesamiento cada vez contaminan más y utilizan más energía. Es por esto que a pesar de que exista y utilicemos a la programación concurrente, como programadores debemos de pensar e implementar las soluciones más eficientes posibles.
