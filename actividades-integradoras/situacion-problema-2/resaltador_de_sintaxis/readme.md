@@ -26,7 +26,18 @@ En donde:
 
 ## Reflexión
 
+
 ## Análisis de complejidad
+Al igual que en la situación problema anterior, la complejidad temporal del algoritmo es `O(n)` en donde `n` es el número de tokens en el json, ya que en realidad se utilizó el mismo algoritmo. Sin embargo, en este caso es ejecutado de manera concurrente, lanzando diferentes threads, uno para cada archivo. Es por esto que el algoritmo corre mucho más rápido en esta ocasión.
+
+Después de correr el programa 5 veces de forma concurrente y 5 veces de forma secuencial en una laptop personal (Procesador Intel CORE i5 vPro de octava generación), se midieron y compararon los tiempos de ejecución promedio para cada caso, estos fueron los resultados obtenidos:
+
+<ul>
+    <li>Con concurrencia: 0.0828596 segundos en promedio</li>
+    <li>Sin concurrencia: 0.2310508 segundos en promedio</li>
+</ul>
+
+Como se puede observar, el programa se ejecuto 0.1481912 segundos más rápido (en promedio) cuando se ejecuto con concurrencia en comparación con su ejecución sin concurrencia. Esto representa una diferencia de velocidad del 35%. Adicionalmente, esta es una diferencia que solo se hace mayor conforme mayor sea el número de archivos que se vayan a parsear.
 
 ## Implicaciones éticas
 
