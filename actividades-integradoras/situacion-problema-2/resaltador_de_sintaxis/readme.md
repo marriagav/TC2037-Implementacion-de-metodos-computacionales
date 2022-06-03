@@ -25,7 +25,7 @@ En donde:
 </ul>
 
 ## Reflexión
-
+La concurrencia es una herramienta muy poderosa que nos permite resolver problemas muy complejos que no se podrían resolver de forma secuencial. Esto se debe a que al programar de esta manera se aprovechan más recursos de la computadora para dividir el programa en diferentes "cores" o "hilos".
 
 ## Análisis de complejidad
 Al igual que en la situación problema anterior, la complejidad temporal del algoritmo es `O(n)` en donde `n` es el número de tokens en el json, ya que en realidad se utilizó el mismo algoritmo. Sin embargo, en este caso es ejecutado de manera concurrente, lanzando diferentes threads, uno para cada archivo. Es por esto que el algoritmo corre mucho más rápido en esta ocasión.
