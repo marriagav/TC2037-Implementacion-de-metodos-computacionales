@@ -1,4 +1,4 @@
-## Reporte: Actividad Integradora 
+## Reporte: Actividad Integradora 5.3 Resaltador de sintaxis paralelo 
 
 ### Miguel Arriaga - A01028570
 
